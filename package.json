@@ -1,0 +1,13 @@
+{
+  "name": "hello-world",
+  "description": "hello world test app",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    
+   "easyimage": "0.1.5",
+   "express": "3.x",
+    "mysql2": "0.11.1"
+
+  }
+}

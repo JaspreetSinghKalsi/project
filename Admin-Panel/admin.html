@@ -1,0 +1,652 @@
+<!DOCTYPE html >
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>Admin Panel</title>
+        <meta charset="UTF-8" />
+        <!-- CSS Reset -->
+		<link rel="stylesheet" type="text/css" href="reset.css" tppabs="http://www.xooom.pl/work/magicadmin/css/reset.css" media="screen" />
+         <link rel="stylesheet" href="styles/main.css" />
+        <!-- Fluid 960 Grid System - CSS framework -->
+		<link rel="stylesheet" type="text/css" href="grid.css" tppabs="http://www.xooom.pl/work/magicadmin/css/grid.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css" tppabs="http://www.xooom.pl/work/magicadmin/css/styles.css" media="screen" />
+        <!-- IE Hacks for the Fluid 960 Grid System -->
+        <!--[if IE 6]><link rel="stylesheet" type="text/css" href="ie6.css" tppabs="http://www.xooom.pl/work/magicadmin/css/ie6.css" media="screen" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="ie.css" tppabs="http://www.xooom.pl/work/magicadmin/css/ie.css" media="screen" /><![endif]-->
+        
+        <!-- Main stylesheet -->
+        <link rel="stylesheet" type="text/css" href="styles.css" tppabs="http://www.xooom.pl/work/magicadmin/css/styles.css" media="screen" />
+        
+        <!-- WYSIWYG editor stylesheet -->
+        <link rel="stylesheet" type="text/css" href="jquery.wysiwyg.css" tppabs="http://www.xooom.pl/work/magicadmin/css/jquery.wysiwyg.css" media="screen" />
+        
+        <!-- Table sorter stylesheet -->
+        <link rel="stylesheet" type="text/css" href="tablesorter.css" tppabs="http://www.xooom.pl/work/magicadmin/css/tablesorter.css" media="screen" />
+        
+        <!-- Thickbox stylesheet -->
+        <link rel="stylesheet" type="text/css" href="thickbox.css" tppabs="http://www.xooom.pl/work/magicadmin/css/thickbox.css" media="screen" />
+        
+        <!-- Themes. Below are several color themes. Uncomment the line of your choice to switch to different color. All styles commented out means blue theme. -->
+        <link rel="stylesheet" type="text/css" href="theme-blue.css" tppabs="http://www.xooom.pl/work/magicadmin/css/theme-blue.css" media="screen" />
+        <!--<link rel="stylesheet" type="text/css" href="css/theme-red.css" media="screen" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/theme-yellow.css" media="screen" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/theme-green.css" media="screen" />-->
+        <!--<link rel="stylesheet" type="text/css" href="css/theme-graphite.css" media="screen" />-->
+        
+		<!-- JQuery engine script-->
+		<script src="js/jquery-1.6.4.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/contact.js"></script>
+		<!-- JQuery WYSIWYG plugin script -->
+		<script type="text/javascript" src="jquery.wysiwyg.js" tppabs="http://www.xooom.pl/work/magicadmin/js/jquery.wysiwyg.js"></script>
+        
+        <!-- JQuery tablesorter plugin script-->
+		<script type="text/javascript" src="jquery.tablesorter.min.js" tppabs="http://www.xooom.pl/work/magicadmin/js/jquery.tablesorter.min.js"></script>
+        
+		<!-- JQuery pager plugin script for tablesorter tables -->
+		<script type="text/javascript" src="jquery.tablesorter.pager.js" tppabs="http://www.xooom.pl/work/magicadmin/js/jquery.tablesorter.pager.js"></script>
+        
+		<!-- JQuery password strength plugin script -->
+		<script type="text/javascript" src="jquery.pstrength-min.1.2.js" tppabs="http://www.xooom.pl/work/magicadmin/js/jquery.pstrength-min.1.2.js"></script>
+        
+		<!-- JQuery thickbox plugin script -->
+		<script type="text/javascript" src="thickbox.js" tppabs="http://www.xooom.pl/work/magicadmin/js/thickbox.js"></script>
+        
+        <!-- Initiate WYIWYG text area -->
+		<script type="text/javascript">
+			$(function()
+			{
+			$('#wysiwyg').wysiwyg(
+			{
+			controls : {
+			separator01 : { visible : true },
+			separator03 : { visible : true },
+			separator04 : { visible : true },
+			separator00 : { visible : true },
+			separator07 : { visible : false },
+			separator02 : { visible : false },
+			separator08 : { visible : false },
+			insertOrderedList : { visible : true },
+			insertUnorderedList : { visible : true },
+			undo: { visible : true },
+			redo: { visible : true },
+			justifyLeft: { visible : true },
+			justifyCenter: { visible : true },
+			justifyRight: { visible : true },
+			justifyFull: { visible : true },
+			subscript: { visible : true },
+			superscript: { visible : true },
+			underline: { visible : true },
+            increaseFontSize : { visible : false },
+            decreaseFontSize : { visible : false }
+			}
+			} );
+			});
+        </script>
+        
+        <!-- Initiate tablesorter script -->
+        <script type="text/javascript">
+			$(document).ready(function() { 
+				$("#myTable") 
+				.tablesorter({
+					// zebra coloring
+					widgets: ['zebra'],
+					// pass the headers argument and assing a object 
+					headers: { 
+						// assign the sixth column (we start counting zero) 
+						6: { 
+							// disable it by setting the property sorter to false 
+							sorter: false 
+						} 
+					}
+				}) 
+			.tablesorterPager({container: $("#pager")}); 
+		}); 
+		</script>
+        
+        <!-- Initiate password strength script -->
+		<script type="text/javascript">
+			$(function() {
+			$('.password').pstrength();
+			});
+        </script>
+	</head>
+	<body>
+    	<!-- Header -->
+        <!-- <div id="header">
+            <!-- Header. Status part -->
+            <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+					&nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="" id="">
+                    
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+
+
+
+
+
+         
+            <!-- Header. Main part -->
+    <div id="Dashboard" name = "Dashboard" style="">
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                    <div class="grid_10" >
+                        <a href="http://127.0.0.1/Guru%20Gobind%20Singh%20Ji%20Site/Admin-Panel/IdPasswordChanger.html" style="margin-right: 76%; margin-top: -3.9%;" id="change">
+                        Click to change UserId-Password
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+
+                <div class="container_12">
+                   
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id="current"><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToMessageboard();">Message Board</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Notice Board</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+           
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1> Welcome To Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center><h2>|| Aageya paye Aakal Ki tabhai Chalayo Panth </h2>
+            <h2>Sabh Sikhan Ko Hukum Hai Guru Manyo Granth ||</h2></center>
+            </div>
+            <br>
+            <br>
+    </div>
+    
+             <!-- Header. Main part -->
+    <div id="Message" style="display:none;">
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id="current"><a href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Notice Board</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center><h2>Messageboard</h2></center>
+            </div>
+            <!-- <br>
+            <br> -->
+           
+        <div id="ParentDiv">
+                 
+        </div>
+               
+
+                <div style="clear:both;"></div>            
+    </div>
+
+
+             <!-- Header. Main part -->
+    <div id="Noticeboard" style="display:none;">
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id=""><a  href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id="current"><a href="#" onclick="changePageToNoticeboard();">Noticeboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center> <h1>Create Noticeboard</h1><center>
+            </div>
+            <br>
+            <br>
+                 <div class="module">
+                     <h2><span>Form</span></h2>
+                     <div class="module-body">   
+                        <form  id="" name="input" action="http://127.0.0.1:5000/UploadNoticePic" method="post" enctype="multipart/form-data">
+                             <fieldset>
+                             Choose Image : <input type='file' name="NoticePic" id="notice_1" /> 
+                            </fieldset>
+                            <fieldset>
+                             Title : <input type="text" class="input-medium" name="title" id="notice_2" />
+                            </fieldset>
+                            <fieldset>
+                                <label>Textarea </label>
+                                <div id="notice_3">
+                                <textarea id="wysiwyg" rows="11" cols="90" name="desc"></textarea> 
+                                </div>
+                            </fieldset>
+                          
+
+                             <fieldset>
+                                <input class="submit-green" type="submit" value="Submit"  onclick="ChangePageToNoticeUploader();"/> 
+                             
+                            </fieldset>
+                        </form>
+                     </div>  <!-- End .module-body -->
+
+                </div>  <!-- End .module -->
+                <div style="clear:both;"></div>
+    </div>
+
+          <!-- Header. Main part -->
+    <div id="events" style="display:none;">
+
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id=""><a  href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Noticeboard</a></li>
+                                <li id="current"><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center> <h1>Upload the Event's Photo</h1><center>
+            </div>
+            <br>
+            <br>
+                 <div class="module">
+                     <h2><span>Form</span></h2>
+                        
+                     <div class="module-body">   
+                        <form  id="" name="input" action="http://127.0.0.1:5000/UploadEventPic" method="post" enctype="multipart/form-data">
+                             <fieldset>
+                             Choose Image : <input type='file' name="EventPic" id="EventPic" /> 
+                            </fieldset>
+                            <fieldset>
+                             Title : <input type="text" class="input-medium" name="title" id="event_2">
+                            </fieldset>
+                           
+                        
+
+                             <fieldset>
+                                <input class="submit-green" type="submit" value="Submit" onclick="ChangePageToEventUploader();" /> 
+                               <!--  <input class="submit-gray" type="submit" value="Cancel" /> -->
+                            </fieldset>
+                        </form>
+                     </div>  <!-- End .module-body -->
+
+                </div>  <!-- End .module -->
+                <div style="clear:both;"></div>
+    </div>
+
+
+
+    <div id="NoticeSubmit" style="display:none;">
+
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id="current"><a href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Notice Board</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center><h2>Uploading is Underprocessing.....</h2></center>
+            </div>
+            <br>
+            <br>
+           
+            
+                <div style="clear:both;"></div>
+    </div>
+
+
+
+
+
+
+<div id="VideoUploader" style="display:none;">
+  <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li id=""><a  href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Noticeboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id="current"><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id=""><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+            <br>
+            <br>
+            <br>
+            <div id="">
+            <center> <h1>Upload the Event's Videos</h1><center>
+            </div>
+            <br>
+            <br>
+                 <div class="module">
+                     <h2><span>Form</span></h2>
+                        
+                     <div class="module-body">   
+                        <form  id="" name="input" action="http://127.0.0.1:5000/UploadEventVideos" method="post" enctype="multipart/form-data">
+                             <fieldset>
+                             Choose Image : <input type='file' name="EventVideos" id="EventVideos" /> 
+                            </fieldset>
+                            <fieldset>
+                             Title : <input type="text" class="input-medium" name="title" id="event_2">
+                            </fieldset>
+                           
+                        
+
+                             <fieldset>
+                                <input class="submit-green" type="submit" value="Submit" onclick="changePageToUploadVideos();" /> 
+                               <!--  <input class="submit-gray" type="submit" value="Cancel" /> -->
+                            </fieldset>
+                        </form>
+                     </div>  <!-- End .module-body -->
+
+                </div>  <!-- End .module -->
+                <div style="clear:both;"></div>
+    </div>
+        
+
+
+
+       <!--  Footer -->
+        
+
+
+
+
+<div id="BulletNotice" style="display:none;">
+
+        <div id="header-status">
+                <div class="container_12">
+                    <div class="grid_8">
+                    &nbsp;
+                    </div>
+                    <div class="grid_4">
+                        <a href="http://127.0.0.1:5000/logout" id="logout">
+                        Logout
+                        </a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div> <!-- End #header-status -->
+
+            <div id="header-main">
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div id="logo">
+                            <ul id="nav">
+                                <li id=""><a href="#" onclick="changePageToDashboard();">Dashboard</a></li>
+                                <li ><a href="#" onclick="changePageToMessageboard();">Messageboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToNoticeboard();">Notice Board</a></li>
+                                <li id=""><a href="#" onclick="changePageToEvents();">Eventboard</a></li>
+                                <li id=""><a href="#" onclick="changePageToUploadVideos();">Upload Videos</a></li>
+                                <li id="current"><a href="#" onclick="NoticeBullet();">Upload Bullets</a></li>
+                        </div><!-- End. #Logo -->
+                    </div><!-- End. .grid_12-->
+                    <div style="clear: both;"></div>
+                </div><!-- End. .container_12 -->
+            </div> <!-- End #header-main -->
+
+            <div style="clear: both;"></div>
+             <br>
+            <div id="">
+            <center> <h1>Admin Panel Of Guru Gobind Singh Study Circle Site</h1><center>
+            </div>
+            <br>
+            <br>
+            <center><img src="GuruGobindSinghJi.jpg" /></center>
+             <br>
+            <br>
+            <br>
+            <div id="">
+            <center> <h1>Create Home Bullet</h1><center>
+            </div>
+            <br>
+            <br>
+                 <div class="module">
+                     <h2><span>Bullet</span></h2>
+                     <div class="module-body">   
+                      <div id="bullet_1">
+                        <form  id="" name="input" action="" method="post" enctype="multipart/form-data">
+                            
+                          
+                            <fieldset>
+                                <label>Textarea </label>
+                                <div id="notice_3">
+                                <textarea id="wysiwyg"  class="bullets" rows="11" cols="90" name="desc"></textarea> 
+                                </div>
+                            </fieldset>
+                          
+
+                             <fieldset>
+                                <input class="submit-green" type="submit" value="Submit"  onclick="uploadBullet();"/> 
+                             
+                            </fieldset>
+
+                        </form>
+                       </div>
+
+
+                            <div id="bullet_2" style="display:none;">
+                                <p>Bullet Information has been Uploaded Successfully !!!!!</p>
+                                <p><a onclick="ChangePageToBullet_1();">Click Here to upload new Bullet Information</a></p>
+                            </div>
+                     </div>  <!-- End .module-body -->
+
+                </div>  <!-- End .module -->
+                <div style="clear:both;"></div>
+    </div>
+
+
+<div id="footer" style="display:none;">
+        	<div class="container_12">
+            	<div class="grid_12">
+                
+                	<p>Created by : Jaspreet Singh Kalsi (C.S.E)<a href="" title=""></a></p>
+        		</div>
+            </div>
+            <div style="clear:both;"></div>
+</div> 
+
+
+	<body>
+</html>
+
+   
